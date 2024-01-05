@@ -19,7 +19,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	width: 100%;
-	gap: 10px;
+	gap: 15px;
 	aspect-ratio: 1;
 }
 
@@ -33,25 +33,39 @@ body {
 	background: #1C1C1C;
 }
 
-@keyframes border {
-	  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 300% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	} 100% {
+		transform: rotate(360deg);
+	}
 }
 
-
 #board .tile-container {
-	content: '';
+	position: relative;
 	border-radius: 12px;
-	background: red;
-	animation: border 20s linear infinite;
+	overflow: hidden;
 	padding: 5px;
-	background: linear-gradient(45deg, #0063FF, #A600FF);
-	background-size: 300%;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 255, 0.4);
+	border: 1px solid black;
+}
+
+#board .tile-container:hover {
+	padding: 6px;
+	box-shadow: 2px 2px 2px 2px rgba(255, 0, 173, 0.2);
+}
+
+.tile-container::before {
+	content: '';
+	position: absolute;
+	top: -25px;
+	right: 0;
+	bottom: 0;
+	left: -25px;
+	height: 150px;
+	width: 150px;
+	background:	linear-gradient(45deg, #0100FF, #FF00AD);
+	background-size: 100%;
+	animation: rotate 5s linear infinite;
+	z-index: -1;
 }
